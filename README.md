@@ -1,6 +1,6 @@
 # Transmission 
 
-[Transmission](https://https://www.transmissionbt.com) lightweight BitTorrent client (daemon and webinterface) running on [Alpine Linux](https://hub.docker.com/_/alpine/).
+[Transmission](https://www.transmissionbt.com) lightweight BitTorrent client (daemon and webinterface) running on [Alpine Linux](https://hub.docker.com/_/alpine/).
 
 ## Usage:
 
