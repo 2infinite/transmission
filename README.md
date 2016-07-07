@@ -7,6 +7,7 @@
 ### Create a data directory on the host system for store data, configs:
 ```sh
 mkdir -p /var/ct/transmission/{data/resume,config}
+chown -R 100:101  /var/ct/transmission/
 ```
 
 ### Run Transmission daemon:
@@ -18,9 +19,9 @@ mkdir -p /var/ct/transmission/{data/resume,config}
 
 ```sh
 docker run -d --log-driver=syslog --restart=always --name transmission --read-only=true \
- -v /var/ct/transmission/data:/data  -v /var/ct/transmission/config:/config \
- --env TRANSMISSION_HOME=/config --cpuset-cpus="0-1" --memory="1g" --kernel-memory="512m" \
+ -v /var/ct/transmission/data:/var/lib/transmission/data  -v /var/ct/transmission/config:/var/lib/transmission/config \
+ --env TRANSMISSION_HOME=/var/lib/transmission/config --cpuset-cpus="0-1" --memory="1g" --kernel-memory="512m" \
  --memory-swap="2g" -p 9091:9091/tcp -p 54321:54321/tcp -p 54321:54321/udp \
- --security-opt no-new-privileges 2infinity/transmission:latest --incomplete-dir /data/resume \
- --download-dir /data --peerport 54321 --auth --username USER4TR --password CHANGE-PASSWORD --allowed "127.0.0.1"
+ --security-opt no-new-privileges 2infinity/transmission:latest --incomplete-dir /var/lib/transmission/data/resume \
+ --download-dir /var/lib/transmission/data --peerport 54321 --auth --username USER4TR --password CHANGE-PASSWORD --allowed "127.0.0.1"
 ```
